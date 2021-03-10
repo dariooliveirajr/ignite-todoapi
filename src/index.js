@@ -1,5 +1,10 @@
 const express = require('express');
 const cors = require('cors');
+<<<<<<< HEAD
+=======
+
+// const { v4: uuidv4 } = require('uuid');
+>>>>>>> parent of fc25c54... Creating User and Post create and show routes
 
 const { v4: uuidv4, validate } = require('uuid');
 
@@ -7,10 +12,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const users = [];
+// const users = [];
 
 function checksExistsUserAccount(request, response, next) {
   // Complete aqui
+<<<<<<< HEAD
 }
 
 function checksCreateTodosUserAvailability(request, response, next) {
@@ -86,6 +92,20 @@ app.post('/todos', checksExistsUserAccount, checksCreateTodosUserAvailability, (
   user.todos.push(newTodo);
 
   return response.status(201).json(newTodo);
+=======
+}
+
+app.post('/users', (request, response) => {
+  // Complete aqui
+});
+
+app.get('/todos', checksExistsUserAccount, (request, response) => {
+  // Complete aqui
+});
+
+app.post('/todos', checksExistsUserAccount, (request, response) => {
+  // Complete aqui
+>>>>>>> parent of fc25c54... Creating User and Post create and show routes
 });
 
 app.put('/todos/:id', checksTodoExists, (request, response) => {
