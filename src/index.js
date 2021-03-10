@@ -44,6 +44,7 @@ app.post('/users', (request, response) => {
     id: uuidv4(),
     name,
     username,
+<<<<<<< HEAD
     pro: false,
     todos: []
   };
@@ -51,6 +52,12 @@ app.post('/users', (request, response) => {
   users.push(user);
 
   return response.status(201).json(user);
+=======
+    todos: []
+  });
+
+  return response.status(201).json(users);
+>>>>>>> parent of dc0e733... Finishing validations
 });
 
 app.get('/users/:id', findUserById, (request, response) => {
@@ -79,6 +86,7 @@ app.get('/todos', checksExistsUserAccount, (request, response) => {
 
 app.post('/todos', checksExistsUserAccount, checksCreateTodosUserAvailability, (request, response) => {
   const { title, deadline } = request.body;
+<<<<<<< HEAD
   const { user } = request;
 
   const newTodo = {
@@ -138,6 +146,31 @@ app.delete('/todos/:id', checksExistsUserAccount, checksTodoExists, (request, re
   user.todos.splice(todoIndex, 1);
 
   return response.status(204).send();
+=======
+  const user = request.user;
+
+  user.todos.push({
+    id: uuidv4(),
+    title,
+    done: false,
+    deadline: new Date(deadline + " 00:00"),
+    created_at: new Date()
+  });
+
+  return response.status(201).send(user);
+});
+
+app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
+  // Complete aqui
+});
+
+app.patch('/todos/:id/done', checksExistsUserAccount, (request, response) => {
+  // Complete aqui
+});
+
+app.delete('/todos/:id', checksExistsUserAccount, (request, response) => {
+  // Complete aqui
+>>>>>>> parent of dc0e733... Finishing validations
 });
 
 module.exports = {
